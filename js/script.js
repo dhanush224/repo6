@@ -83,16 +83,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // On first load, show home view
 showLoading("#main-content");
 $ajaxUtils.sendGetRequest(
-  allCategoriesUrl,
-  buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
-  true);
+  allCategoriesUrl,function buildAndShowHomeHTML (categories) {
+
+  // Load home snippet page
+  $ajaxUtils.sendGetRequest(
+    homeHtmlUrl,
+    function (homeHtml) {
+      var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtmlUrl,randomCategoryShortName,chosenCategoryShortName);
+      var categoryViewHtml = buildAndShowMenuItemsHTML(homeHtmlToInsertIntoMainPage);
+      insertHtml("#main-content", categoryViewHtml);
+    }, // ***** <---- TODO: STEP 1: Substitute [...] ******
+  false);
 });
 // *** finish **
 
 
 // Builds HTML for the home page based on categories array
 // returned from the server.
-var buildAndShowHomeHTML = function(categories) {
+function buildAndShowHomeHTML (categories) {
 
   // Load home snippet page
   $ajaxUtils.sendGetRequest(
