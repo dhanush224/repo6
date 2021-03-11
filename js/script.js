@@ -40,8 +40,8 @@ var showLoading = function (selector) {
 // with propValue in given 'string'
 var insertProperty = function (string, propName, propValue) {
   var propToReplace = "{{" + propName + "}}";
-  string = string
-  var p = "'" + propValue "'" ;
+  var p = "'" + propValue+ "'" ;
+  string = string  
     .replace(new RegExp(propToReplace, "g"), p);
   return string;
 };
@@ -89,6 +89,10 @@ $ajaxUtils.sendGetRequest(
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
     function (homeHtml) {
+      var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
+       var homeHtmlToInsertIntoMainPage = insertProperty(homeHtmlUrl,randomCategoryShortName,chosenCategoryShortName);
+      var categoryViewHtml = buildAndShowCategoriesHTML(homeHtmlToInsertIntoMainPage);
+      insertHtml("#main-content", categoryViewHtml);
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
 },
@@ -131,7 +135,7 @@ function buildAndShowHomeHTML (categories) {
       // Use the existing insertHtml function for that purpose. Look through this code for an example
       // of how to do that.
       // ....
-      var categoryViewHtml = buildAndShowMenuItemsHTML(homeHtmlToInsertIntoMainPage);
+      var categoryViewHtml = buildAndShowCategoriesHTML(homeHtmlToInsertIntoMainPage);
       insertHtml("#main-content", categoryViewHtml);
 
     },
