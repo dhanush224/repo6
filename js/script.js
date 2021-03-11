@@ -95,7 +95,8 @@ $ajaxUtils.sendGetRequest(
       insertHtml("#main-content", categoryViewHtml);
     }, // ***** <---- TODO: STEP 1: Substitute [...] ******
   false);
-});
+},
+false);
 // *** finish **
 
 
