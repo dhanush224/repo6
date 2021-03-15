@@ -83,19 +83,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // On first load, show home view
 showLoading("#main-content");
 $ajaxUtils.sendGetRequest(
-  allCategoriesUrl,function buildAndShowHomeHTML (categories) {
-
-  // Load home snippet page
-  $ajaxUtils.sendGetRequest(
-    homeHtmlUrl,
-    function (homeHtml) {
-      var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
-       var homeHtmlToInsertIntoMainPage = insertProperty(homeHtmlUrl,"randomCategoryShortName",chosenCategoryShortName);
-      var categoryViewHtml = buildAndShowCategoriesHTML(homeHtmlToInsertIntoMainPage);
-      insertHtml("#main-content", categoryViewHtml);
-    },
-    false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
-},
+  allCategoriesUrl,buildAndShowHomeHTML,
 true);
 });
 // *** finish **
@@ -135,8 +123,8 @@ function buildAndShowHomeHTML (categories) {
       // Use the existing insertHtml function for that purpose. Look through this code for an example
       // of how to do that.
       // ....
-      var categoryViewHtml = buildAndShowCategoriesHTML(homeHtmlToInsertIntoMainPage);
-      insertHtml("#main-content", categoryViewHtml);
+      
+      insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
 
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
