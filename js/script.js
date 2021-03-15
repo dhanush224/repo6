@@ -40,7 +40,7 @@ var showLoading = function (selector) {
 // with propValue in given 'string'
 var insertProperty = function (string, propName, propValue) {
   var propToReplace = "{{" + propName + "}}";
-  string = string  
+  string = string
     .replace(new RegExp(propToReplace, "g"), propValue);
   return string;
 };
@@ -117,7 +117,7 @@ function buildAndShowHomeHTML (categories) {
       // it into the home html snippet.
       //
       chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
-      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml,"randomCategoryShortName",chosenCategoryShortName);
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", chosenCategoryShortName);
 
 
       // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
@@ -125,7 +125,7 @@ function buildAndShowHomeHTML (categories) {
       // of how to do that.
       // ....
       
-      insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
+      insertHtml('#main-content', homeHtmlToInsertIntoMainPage);
 
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
