@@ -40,9 +40,8 @@ var showLoading = function (selector) {
 // with propValue in given 'string'
 var insertProperty = function (string, propName, propValue) {
   var propToReplace = "{{" + propName + "}}";
-  var p = "'" + propValue+ "'" ;
   string = string  
-    .replace(new RegExp(propToReplace, "g"), p);
+    .replace(new RegExp(propToReplace, "g"), propValue);
   return string;
 };
 
@@ -116,6 +115,7 @@ function buildAndShowHomeHTML (categories) {
       // Hint: you need to surround the chosen category short name with something before inserting
       // it into the home html snippet.
       //
+      chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
       var homeHtmlToInsertIntoMainPage = insertProperty(homeHtmlUrl,"randomCategoryShortName",chosenCategoryShortName);
 
 
